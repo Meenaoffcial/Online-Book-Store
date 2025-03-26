@@ -37,20 +37,19 @@ public class BookController {
 	public ResponseEntity<List<Book>> getAllBooks() {
 		return ResponseEntity.ok(bookService.getAllBooks());
 	}
-
-	/**
-	 * Retrieves a specific book by its ID.
-	 * 
+	/** 
+	 * Retrieves a book by its ID.
+	 *  
 	 * @param id The ID of the book to fetch.
 	 * @return The book details if found.
-	 * @throws ResourceNotFoundException if the book is not found.
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Book> getBookById(@PathVariable Long id) {
-		Book book = bookService.getBookById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Book not found with id: " + id));
-		return ResponseEntity.ok(book);
+	    Book book = bookService.getBookById(id)
+	            .orElseThrow(() -> new ResourceNotFoundException("Book not found with id: " + id));
+	    return ResponseEntity.ok(book);
 	}
+
 
 	/**
 	 * Adds a new book to the database.
